@@ -2,6 +2,7 @@ package string_sum
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 	"unicode/utf8"
@@ -48,7 +49,7 @@ func StringSum(input string) (output string, err error) {
 		case (runex[i] > '0' && runex[i] < '9') && fDig != "":
 			tDig = string(runex[i])
 		default:
-			err = ftm.Errorf("attention in line detected NLO")
+			err = fmt.Errorf("attention in line detected NLO")
 			return "", err
 		}
 
@@ -63,7 +64,7 @@ func StringSum(input string) (output string, err error) {
 
 		if err1 != nil || err2 != nil {
 
-			err = ftm.Errorf("attention in line detected Super NLO")
+			err = fmt.Errorf("attention in line detected Super NLO")
 			return "", err
 		}
 
