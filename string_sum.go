@@ -57,7 +57,8 @@ func StringSum(input string) (output string, err error) {
 			tDig += string(runex[i])
 		case (runex[i] >= '0' && runex[i] <= '9'):
 			t3Sign = string(runex[i])
-			return "", fmt.Errorf("%w", errorNotTwoOperands)
+			err = fmt.Errorf("%w", errorNotTwoOperands)
+			return "", err
 		default:
 			// fmt.Println(string(runex[i]))
 			_, err111 := strconv.Atoi(string(runex[i]))
@@ -68,7 +69,8 @@ func StringSum(input string) (output string, err error) {
 	// fmt.Println(fSign, fDig, tSign, tDig)
 
 	if fDig == "" || tDig == "" {
-		return "", errorNotTwoOperands
+		err = fmt.Errorf("%w", errorNotTwoOperands)
+		return "", err
 
 	}
 
