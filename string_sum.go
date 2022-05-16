@@ -2,6 +2,10 @@ package string_sum
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
+	"strings"
+	"unicode/utf8"
 )
 
 //use these errors as appropriate, wrapping them with fmt.Errorf function
