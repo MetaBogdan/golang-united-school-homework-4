@@ -35,6 +35,7 @@ func StringSum(input string) (output string, err error) {
 	lenArr := utf8.RuneCountInString(input)
 	//  fmt.Println(lenArr)
 	if lenArr == 0 {
+		err = fmt.Errorf("input is empty")
 		return "", errorEmptyInput
 	}
 	var t3Sign, fSign, tSign, fDig, tDig, FinalStr string
