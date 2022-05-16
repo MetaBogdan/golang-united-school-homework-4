@@ -60,8 +60,9 @@ func StringSum(input string) (output string, err error) {
 			return "", fmt.Errorf("%w", errorNotTwoOperands)
 		default:
 			// fmt.Println(string(runex[i]))
-			err = fmt.Errorf("attention in line detected NLO")
-			return "", err
+			_, err111 := strconv.Atoi(string(runex[i]))
+			// err = fmt.Errorf("attention in line detected NLO",err111)
+			return "", err111
 		}
 	}
 	// fmt.Println(fSign, fDig, tSign, tDig)
