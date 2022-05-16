@@ -51,27 +51,26 @@ func StringSum(input string) (output string, err error) {
 			err = fmt.Errorf("attention in line detected NLO")
 			return "", err
 		}
+	}
 
-		if fDig == "" || tDig == "" {
-			return "", errorNotTwoOperands
-
-		}
-
-		finalint1, err1 := strconv.Atoi(fSign + fDig)
-
-		finalint2, err2 := strconv.Atoi(tSign + tDig)
-
-		if err1 != nil || err2 != nil {
-
-			err = fmt.Errorf("attention in line detected Super NLO")
-			return "", err
-		}
-
-		finalint := finalint1 + finalint2
-
-		finalStr = strconv.Itoa(finalint)
+	if fDig == "" || tDig == "" {
+		return "", errorNotTwoOperands
 
 	}
+
+	finalint1, err1 := strconv.Atoi(fSign + fDig)
+
+	finalint2, err2 := strconv.Atoi(tSign + tDig)
+
+	if err1 != nil || err2 != nil {
+
+		err = fmt.Errorf("attention in line detected Super NLO")
+		return "", err
+	}
+
+	finalint := finalint1 + finalint2
+
+	finalStr = strconv.Itoa(finalint)
 
 	return finalStr, nil
 }
