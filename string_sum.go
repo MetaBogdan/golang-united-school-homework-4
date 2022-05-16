@@ -21,7 +21,54 @@ var (
 // with fmt.Errorf function
 //
 // Use the errors defined above as described, again wrapping into fmt.Errorf
-
+// Проверить строку на (только) пробелы
+// Проверить строку на (только) пробелы
 func StringSum(input string) (output string, err error) {
-	return "", nil
+
+	input = strings.Replace(input, " ", "", -1)
+	runex := []rune(input)
+	lenArr := utf8.RuneCountInString(input)
+	if lenArr == 0 {
+		return "", errorEmptyInput
+	}
+	var fSign, tSign, fDig, tDig, finalStr string
+	var Flag bool
+
+	for i := 0; i <= lenArr-1; i++ {
+		switch {
+		case (runex[i] == '+' || runex[i] == '-') && fDig == "":
+			fSign = string(runex[i])
+		case (runex[i] == '+' || runex[i] == '-') && fDig != "":
+			tSign = string(runex[i])
+		case (runex[i] > '0' && runex[i] < '9') && fDig == "":
+			fDig = string(runex[i])
+		case (runex[i] > '0' && runex[i] < '9') && fDig != "":
+			tDig = string(runex[i])
+		default:
+			err = ftm.Errorf("attention in line detected NLO")
+			return "", err
+		}
+
+		if fDig == "" || tDig == "" {
+			return "", errorNotTwoOperands
+
+		}
+
+		finalint1, err1 := strconv.Atoi(fSign + fDig)
+
+		finalint2, err2 := strconv.Atoi(tSign + tDig)
+
+		if err1 != nil || err2 != nil {
+
+			err = ftm.Errorf("attention in line detected Super NLO")
+			return "", err
+		}
+
+		finalint := finalint1 + finalint2
+
+		finalStr = strconv.Itoa(finalint)
+
+	}
+
+	return finalStr, nil
 }
