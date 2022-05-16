@@ -27,31 +27,43 @@ var (
 // Use the errors defined above as described, again wrapping into fmt.Errorf
 // Проверить строку на (только) пробелы
 // Проверить строку на (только) пробелы
-func StringSum(input string) (output string, err error) {
 
+func StringSum(input string) (output string, err error) {
+	//  fmt.Println(input)
 	input = strings.Replace(input, " ", "", -1)
 	runex := []rune(input)
 	lenArr := utf8.RuneCountInString(input)
+	//  fmt.Println(lenArr)
 	if lenArr == 0 {
 		return "", errorEmptyInput
 	}
-	var fSign, tSign, fDig, tDig, finalStr string
+	var t3Sign, fSign, tSign, fDig, tDig, FinalStr string
 
 	for i := 0; i <= lenArr-1; i++ {
+
 		switch {
 		case (runex[i] == '+' || runex[i] == '-') && fDig == "":
 			fSign = string(runex[i])
-		case (runex[i] == '+' || runex[i] == '-') && fDig != "":
+		case (runex[i] == '+' || runex[i] == '-') && fDig != "" && tDig == "":
 			tSign = string(runex[i])
-		case (runex[i] > '0' && runex[i] < '9') && fDig == "":
-			fDig = string(runex[i])
-		case (runex[i] > '0' && runex[i] < '9') && fDig != "":
-			tDig = string(runex[i])
+		case (runex[i] == '+' || runex[i] == '-'):
+			fmt.Println("ааааа")
+			t3Sign = string(runex[i])
+			return "", errorNotTwoOperands
+		case (runex[i] >= '0' && runex[i] <= '9') && tSign == "":
+			fDig += string(runex[i])
+		case (runex[i] >= '0' && runex[i] <= '9') && t3Sign == "" && tSign != "":
+			tDig += string(runex[i])
+		case (runex[i] >= '0' && runex[i] <= '9'):
+			t3Sign = string(runex[i])
+			return "", errorNotTwoOperands
 		default:
+			// fmt.Println(string(runex[i]))
 			err = fmt.Errorf("attention in line detected NLO")
 			return "", err
 		}
 	}
+	fmt.Println(fSign, fDig, tSign, tDig)
 
 	if fDig == "" || tDig == "" {
 		return "", errorNotTwoOperands
@@ -69,8 +81,9 @@ func StringSum(input string) (output string, err error) {
 	}
 
 	finalint := finalint1 + finalint2
+	// fmt.Println(finalint)
+	FinalStr = strconv.Itoa(finalint)
+	fmt.Println(FinalStr)
 
-	finalStr = strconv.Itoa(finalint)
-
-	return finalStr, nil
+	return FinalStr, nil
 }
