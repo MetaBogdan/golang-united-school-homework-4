@@ -47,7 +47,7 @@ func StringSum(input string) (output string, err error) {
 		case (runex[i] == '+' || runex[i] == '-') && fDig != "" && tDig == "":
 			tSign = string(runex[i])
 		case (runex[i] == '+' || runex[i] == '-'):
-			fmt.Println("ааааа")
+			//	fmt.Println("ааааа")
 			t3Sign = string(runex[i])
 			return "", errorNotTwoOperands
 		case (runex[i] >= '0' && runex[i] <= '9') && tSign == "":
@@ -63,7 +63,7 @@ func StringSum(input string) (output string, err error) {
 			return "", err
 		}
 	}
-	fmt.Println(fSign, fDig, tSign, tDig)
+	// fmt.Println(fSign, fDig, tSign, tDig)
 
 	if fDig == "" || tDig == "" {
 		return "", errorNotTwoOperands
@@ -83,7 +83,7 @@ func StringSum(input string) (output string, err error) {
 	finalint := finalint1 + finalint2
 	// fmt.Println(finalint)
 	FinalStr = strconv.Itoa(finalint)
-	fmt.Println(FinalStr)
+	// fmt.Println(FinalStr)
 
 	return FinalStr, nil
 }
