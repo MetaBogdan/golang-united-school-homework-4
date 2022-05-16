@@ -62,8 +62,8 @@ func StringSum(input string) (output string, err error) {
 		default:
 			// fmt.Println(string(runex[i]))
 			_, err111 := strconv.Atoi(string(runex[i]))
-			// err = fmt.Errorf("attention in line detected NLO",err111)
-			return "", err111
+			err = fmt.Errorf("attention in line detected NLO %w", err111)
+			return "", err
 		}
 	}
 	// fmt.Println(fSign, fDig, tSign, tDig)
@@ -76,12 +76,14 @@ func StringSum(input string) (output string, err error) {
 
 	finalint1, err1 := strconv.Atoi(fSign + fDig)
 
+	if err1 != nil {
+		return "", fmt.Errorf("attention in line detected NLO %w", err1)
+	}
+
 	finalint2, err2 := strconv.Atoi(tSign + tDig)
 
-	if err1 != nil || err2 != nil {
-
-		err = fmt.Errorf("attention in line detected Super NLO")
-		return "", err
+	if err2 != nil {
+		return "", fmt.Errorf("attention in line detected NLO %w", err2)
 	}
 
 	finalint := finalint1 + finalint2
