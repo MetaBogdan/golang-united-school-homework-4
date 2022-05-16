@@ -36,7 +36,6 @@ func StringSum(input string) (output string, err error) {
 		return "", errorEmptyInput
 	}
 	var fSign, tSign, fDig, tDig, finalStr string
-	var Flag bool
 
 	for i := 0; i <= lenArr-1; i++ {
 		switch {
