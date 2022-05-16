@@ -35,8 +35,8 @@ func StringSum(input string) (output string, err error) {
 	lenArr := utf8.RuneCountInString(input)
 	//  fmt.Println(lenArr)
 	if lenArr == 0 {
-		err = fmt.Errorf("input is empty")
-		return "", errorEmptyInput
+		err = fmt.Errorf("%w", errorEmptyInput)
+		return "", err
 	}
 	var t3Sign, fSign, tSign, fDig, tDig, FinalStr string
 
@@ -50,14 +50,14 @@ func StringSum(input string) (output string, err error) {
 		case (runex[i] == '+' || runex[i] == '-'):
 			//	fmt.Println("ааааа")
 			t3Sign = string(runex[i])
-			return "", errorNotTwoOperands
+			return "", fmt.Errorf("%w", errorNotTwoOperands)
 		case (runex[i] >= '0' && runex[i] <= '9') && tSign == "":
 			fDig += string(runex[i])
 		case (runex[i] >= '0' && runex[i] <= '9') && t3Sign == "" && tSign != "":
 			tDig += string(runex[i])
 		case (runex[i] >= '0' && runex[i] <= '9'):
 			t3Sign = string(runex[i])
-			return "", errorNotTwoOperands
+			return "", fmt.Errorf("%w", errorNotTwoOperands)
 		default:
 			// fmt.Println(string(runex[i]))
 			err = fmt.Errorf("attention in line detected NLO")
